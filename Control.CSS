@@ -1,1 +1,28 @@
 
+body {
+  background-color: black;
+}
+
+#TopText {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(255, 255, 255);
+}
+
+.Big {
+  font-size: 50px;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.Mid {
+  font-size: 35px;
+}
+
+div {
+  font-size: 35px;
+}
+
+button {
+  background-color:rgb(1, 2, 78);
+}
