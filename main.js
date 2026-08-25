@@ -1,13 +1,17 @@
 let TopCharsPM = document.getElementsByClassName("BPM")
-let CurTopCharsPM = document.getElementsByClassName("CPM")
-let BestAcc = document.getElementsByClassName("BA")
+let CurCharsPM = document.getElementsByClassName("CPM")
+let BestAccEl = document.getElementsByClassName("BA")
 let CurrAcc = document.getElementsByClassName("CA")
 let Button = document.getElementsByClassName("StartButton")
 let TextArea = document.getElementsByClassName("TextArea")
 let TypingArea = document.getElementsByClassName("TypingArea")
 let CurrRunning = false
+
 let CurrTime
 let CurrString
+
+let TopCharsPerMin = 0
+let BestAcc = 0
 
 let PossibleStrings = new Array("This is some Random Text as I do not know what else to write for this. I haven't used Java Script in a while but thats fine.")
 
@@ -25,11 +29,26 @@ Button:addEventListener("click", () => {
     let Correct = 0
     for (let i = 0;i<TypedString;i++)  {
       let CurStringNum = CurrString[i]
-      let CurTypedString = TypedString[i]
-      if (CurStringNum == CurTypedString) {
-        Correct += 1
+      if (CurStringNum == null) {
+        Correct -=1
+      } else {
+       let CurTypedString = TypedString[i]
+       if (CurStringNum == CurTypedString) {
+         Correct += 1
+        }
       }
     }
-    //Add logic for extra/not enough chars to factor into chars per min and acc
+    let AccPercent = (Correct/Length) * 100
+    let CPM = AccPercent * (TimeRes / 1000)
+    CurCharsPM.textcontent = CPM
+    CurrAcc.textcontent = AccPercent
+    if (CPM > TopCharsPerMin) {
+      TopCharsPM.textcontent = CPM
+      TopCharsPerMin = CPM
+    }
+    if (AccPercent > BestAcc) {
+      BestAccEl.textcontent = AccPercent
+      BestAcc = AccPercent
+    }
   }
 })
